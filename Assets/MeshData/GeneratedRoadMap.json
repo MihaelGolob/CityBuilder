@@ -1,0 +1,704 @@
+{
+  "(-4, 1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -36.0,
+      "Item2": 0.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-3, 1)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -27.0,
+      "Item2": 0.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-2, 1)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -18.0,
+      "Item2": 0.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-1, 1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -9.0,
+      "Item2": 0.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(1, 1)": {
+    "Type": 4,
+    "Position": {
+      "Item1": 0.0,
+      "Item2": 0.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-2, 2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -18.0,
+      "Item2": 9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-2, 3)": {
+    "Type": 1,
+    "Position": {
+      "Item1": -18.0,
+      "Item2": 18.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-1, 3)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -9.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(1, 3)": {
+    "Type": 2,
+    "Position": {
+      "Item1": 0.0,
+      "Item2": 18.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(2, 3)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 9.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(3, 3)": {
+    "Type": 2,
+    "Position": {
+      "Item1": 18.0,
+      "Item2": 18.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(4, 3)": {
+    "Type": 2,
+    "Position": {
+      "Item1": 27.0,
+      "Item2": 18.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(5, 3)": {
+    "Type": 4,
+    "Position": {
+      "Item1": 36.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(5, 2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 36.0,
+      "Item2": 9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(5, 1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 36.0,
+      "Item2": 0.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(5, -1)": {
+    "Type": 4,
+    "Position": {
+      "Item1": 36.0,
+      "Item2": -9.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(4, -1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 27.0,
+      "Item2": -9.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(3, -1)": {
+    "Type": 2,
+    "Position": {
+      "Item1": 18.0,
+      "Item2": -9.0
+    },
+    "Orientation": 2,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(2, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 9.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-3, -1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -27.0,
+      "Item2": -9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-3, -2)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -27.0,
+      "Item2": -18.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(1, 2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 0.0,
+      "Item2": 9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-4, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -36.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-5, -2)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -45.0,
+      "Item2": -18.0
+    },
+    "Orientation": 2,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(1, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 0.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-3, 3)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -27.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-4, 3)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -36.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-5, 3)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -45.0,
+      "Item2": 18.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-6, 3)": {
+    "Type": 3,
+    "Position": {
+      "Item1": -54.0,
+      "Item2": 18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-5, 2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -45.0,
+      "Item2": 9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-5, 1)": {
+    "Type": 2,
+    "Position": {
+      "Item1": -45.0,
+      "Item2": 0.0
+    },
+    "Orientation": 2,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-5, -1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -45.0,
+      "Item2": -9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-2, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -18.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-1, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -9.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.15,
+      "Item2": 0.0590164065,
+      "Item3": 0.0590164065
+    },
+    "PavementColor": {
+      "Item1": 0.5,
+      "Item2": 0.199999988,
+      "Item3": 0.199999988
+    }
+  },
+  "(3, 1)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 18.0,
+      "Item2": 0.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(3, 2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 18.0,
+      "Item2": 9.0
+    },
+    "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(3, -2)": {
+    "Type": 4,
+    "Position": {
+      "Item1": 18.0,
+      "Item2": -18.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-2, 4)": {
+    "Type": 3,
+    "Position": {
+      "Item1": -18.0,
+      "Item2": 27.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(4, 4)": {
+    "Type": 3,
+    "Position": {
+      "Item1": 27.0,
+      "Item2": 27.0
+    },
+    "Orientation": 1,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  }
+}

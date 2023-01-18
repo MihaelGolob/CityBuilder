@@ -13,7 +13,6 @@ public class Vehicle : MonoBehaviour {
 
     private List<Vector3> _path;
     private int _currentNode = 0;
-    private bool _forward = true;
     
     #region Unity_methods
 
@@ -30,23 +29,15 @@ public class Vehicle : MonoBehaviour {
     private void Update() {
         if (_path == null || _path.Count == 0) return;
         if (!(_navAgent.remainingDistance < 0.5f)) return;
-        
-        if ((_currentNode == _path.Count - 1 && _forward) || (_currentNode == 0 && !_forward)) {
+
+        _currentNode++;
+        if (_currentNode >= _path.Count) {
+            var tmp = targets[0];
+            targets[0] = targets[1];
+            targets[1] = tmp;
+            
             _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position);
-            
-            if (_forward) {
-                _currentNode = _path.Count - 1;
-            } else {
-                _currentNode = 0;
-            }
-            
-            _forward = !_forward;
-        }
-        else {
-            if (_forward)
-                _currentNode++;
-            else
-                _currentNode--;
+            _currentNode = 0;
         }
         
         _navAgent.SetDestination(_path[_currentNode]);

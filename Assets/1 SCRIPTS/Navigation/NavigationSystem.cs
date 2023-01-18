@@ -40,7 +40,15 @@ public class NavigationSystem : MonoBehaviour {
         // get the shortest path between the two nodes
         var path = _graph.FindPath(startNode, endNode);
         // convert to a list of vector3
-        var result = path.Select(n => new Vector3(n.Position.x, 0f, n.Position.y)).ToList();
+        var result = new List<Vector3>();
+        for (var i = 0; i < path.Count; i++) {
+            var before = i == 0 ? 0 : i - 1;
+            var next = i == path.Count - 1 ? i : i + 1;
+            var beforeDir = GetDirection(path[before], path[i]);
+            var nextDir = GetDirection(path[i], path[next]);
+            
+            result.Add(path[i].DriveThroughPoint(beforeDir, nextDir));
+        }
 
         return result;
     }
@@ -60,5 +68,22 @@ public class NavigationSystem : MonoBehaviour {
 
     public void BakeNavMesh() => _roadNavMesh.BuildNavMesh();
 
+    #endregion
+    
+    #region private methods
+
+    private Orientation GetDirection(RoadNode current, RoadNode next) {
+        if (current.Position.x < next.Position.x)
+            return Orientation.Right;
+        if (current.Position.x > next.Position.x)
+            return Orientation.Left;
+        if (current.Position.y < next.Position.y)
+            return Orientation.Up;
+        if (current.Position.y > next.Position.y)
+            return Orientation.Down;
+        
+        return Orientation.None;
+    }
+    
     #endregion
 }

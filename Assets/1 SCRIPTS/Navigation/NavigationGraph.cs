@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class NavigationGraph {
     private readonly Dictionary<(int x, int y), RoadNode> _nodes = new();
@@ -40,11 +41,12 @@ public class NavigationGraph {
     
     #region Pathfinding
 
-    public List<RoadNode> FindPath((int x, int y) start, (int x, int y) end) {
+    public List<RoadNode> FindPath((int x, int y) start, (int x, int y) end, Orientation startingOrientation) {
         // use BFS to find the shortest path
         var queue = new Queue<(int x, int y)>();
         var visited = new HashSet<(int x, int y)>();
         var parents = new Dictionary<(int x, int y), (int x, int y)>();
+        var first = true;
         
         queue.Enqueue(start);
         visited.Add(start);
@@ -53,12 +55,14 @@ public class NavigationGraph {
             var current = queue.Dequeue();
             visited.Add(current);
 
-            var neighbors = GetNeighborsKeys(current);
+            var neighbors = GetNeighborsKeys(current, first ? startingOrientation : Orientation.None);
             foreach (var n in neighbors.Where(n => !visited.Contains(n))) {
                 queue.Enqueue(n);
                 visited.Add(n);
                 parents[n] = current;
             }
+            
+            first = false;
         }
         
         return ReconstructPath(parents, start, end);
@@ -95,24 +99,32 @@ public class NavigationGraph {
         return neighbours;
     }
 
-    private List<(int x, int y)> GetNeighborsKeys((int x, int y) node) {
+    private List<(int x, int y)> GetNeighborsKeys((int x, int y) node, Orientation orientation) {
         var neighbours = new List<(int x, int y)>();
-        
-        var left = GetValidNeighbourKey(node, Orientation.Left);
-        if (_nodes.ContainsKey(left))
-            neighbours.Add(left);
-        
-        var right = GetValidNeighbourKey(node, Orientation.Right);
-        if (_nodes.ContainsKey(right))
-            neighbours.Add(right);
-        
-        var down = GetValidNeighbourKey(node, Orientation.Down);
-        if (_nodes.ContainsKey(down))
-            neighbours.Add(down);
-        
-        var up = GetValidNeighbourKey(node, Orientation.Up);
-        if (_nodes.ContainsKey(up))
-            neighbours.Add(up);
+
+        if (orientation != Orientation.Right) {
+            var left = GetValidNeighbourKey(node, Orientation.Left);
+            if (_nodes.ContainsKey(left))
+                neighbours.Add(left);
+        }
+
+        if (orientation != Orientation.Left) {
+            var right = GetValidNeighbourKey(node, Orientation.Right);
+            if (_nodes.ContainsKey(right))
+                neighbours.Add(right);
+        }
+
+        if (orientation != Orientation.Up) {
+            var down = GetValidNeighbourKey(node, Orientation.Down);
+            if (_nodes.ContainsKey(down))
+                neighbours.Add(down);
+        }
+
+        if (orientation != Orientation.Down) {
+            var up = GetValidNeighbourKey(node, Orientation.Up);
+            if (_nodes.ContainsKey(up))
+                neighbours.Add(up);
+        }
         
         return neighbours;
     }

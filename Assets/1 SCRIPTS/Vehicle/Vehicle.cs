@@ -23,13 +23,12 @@ public class Vehicle : MonoBehaviour {
         // wait for the navigation system to setup
         yield return new WaitForSeconds(2f);
 
-        _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position);
+        _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
         _navAgent.SetDestination(_path[_currentNode]);
     }
 
     private void Update() {
         MoveToNextNode();
-
         DetectVehicles();
     }
 
@@ -57,7 +56,7 @@ public class Vehicle : MonoBehaviour {
             // swap start and finish 
             (targets[0], targets[1]) = (targets[1], targets[0]);
 
-            _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position);
+            _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
             _currentNode = 0;
         }
 
@@ -79,6 +78,19 @@ public class Vehicle : MonoBehaviour {
         }
 
         _navAgent.isStopped = false;
+    }
+
+    private Orientation CalculateOrientation() {
+        // calculate the where is the vehicle facing
+        var forward = transform.forward;
+        var angle = Vector3.SignedAngle(Vector3.forward, forward, Vector3.up);
+
+        return angle switch {
+            > 45 and < 135 => Orientation.Right,
+            > 135 or < -135 => Orientation.Down,
+            > -135 and < -45 => Orientation.Left,
+            _ => Orientation.Up
+        };
     }
 
     #endregion

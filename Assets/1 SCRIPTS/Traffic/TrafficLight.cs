@@ -40,8 +40,8 @@ public class TrafficLight : MonoBehaviour {
         if (!_isGreen) yield return null;
         
         yellowLight.SetActive(true);
-        yield return new WaitForSeconds(2f);
         greenLight.SetActive(false);
+        yield return new WaitForSeconds(2f);
         yellowLight.SetActive(false);
         redLight.SetActive(true);
 
@@ -51,9 +51,9 @@ public class TrafficLight : MonoBehaviour {
     private IEnumerator SetGreenLightInternal() {
         if (_isGreen) yield return null;
         
-        redLight.SetActive(false);
         yellowLight.SetActive(true);
         yield return new WaitForSeconds(2f);
+        redLight.SetActive(false);
         yellowLight.SetActive(false);
         greenLight.SetActive(true);
 

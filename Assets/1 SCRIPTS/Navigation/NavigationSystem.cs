@@ -32,13 +32,13 @@ public class NavigationSystem : MonoBehaviour {
     
     #region public methods
     
-    public List<Vector3> GetShortestPath(Vector3 start, Vector3 end) {
+    public List<Vector3> GetShortestPath(Vector3 start, Vector3 end, Orientation startingOrientation) {
         // get the closest road node to the start and end points
         var startNode = _graph.GetClosestNode((start.x, start.z));
         var endNode = _graph.GetClosestNode((end.x, end.z));
         
         // get the shortest path between the two nodes
-        var path = _graph.FindPath(startNode, endNode);
+        var path = _graph.FindPath(startNode, endNode, startingOrientation);
         // convert to a list of vector3
         var result = new List<Vector3>();
         for (var i = 0; i < path.Count; i++) {

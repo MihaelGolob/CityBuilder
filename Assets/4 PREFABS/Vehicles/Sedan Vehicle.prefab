@@ -371,6 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5909066473759241187}
+  - component: {fileID: 7738840515152231189}
   - component: {fileID: 6342319326498211891}
   - component: {fileID: 6342319326498211901}
   m_Layer: 0
@@ -396,6 +397,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &7738840515152231189
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6342319326498211900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1156158, y: 1.7329439, z: 3.008564}
+  m_Center: {x: 0.00000035762787, y: 0.976698, z: -0.03586924}
 --- !u!195 &6342319326498211891
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -433,6 +447,7 @@ MonoBehaviour:
   targets:
   - {fileID: 0}
   - {fileID: 0}
+  visionDistance: 4
 --- !u!1 &7088890643010651882
 GameObject:
   m_ObjectHideFlags: 0

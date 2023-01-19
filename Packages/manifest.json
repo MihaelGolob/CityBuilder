@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.ineor.audio-system": "https://github.com/MihaelGolob/audio-system.git",
+    "com.ineor.audio-system": "file:/Users/m.golob/Documents/Ineor Unity Packages/audio-system",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ai.navigation": "1.0.0-exp.4",
     "com.unity.collab-proxy": "1.17.7",

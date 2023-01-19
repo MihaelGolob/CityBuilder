@@ -130,8 +130,6 @@ public class SelectSystem : MonoBehaviour {
             mouseWorldPosition = hit.point;
         }
 
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
-
         var cellPosition = _grid.WorldToCell(mouseWorldPosition);
         var cellCenter = _grid.GetCellCenterWorld(cellPosition);
 

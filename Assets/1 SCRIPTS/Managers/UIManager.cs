@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
     [Header("UI elements")] 
     [SerializeField] private Button buildButton;
     [SerializeField] private Button destroyButton;
+    [SerializeField] private Button noneButton;
 
     private void Start() {
         buildButton.interactable = false;
@@ -21,12 +22,21 @@ public class UIManager : MonoBehaviour {
         stateMachine.SetState(BuildingState.Build);
         buildButton.interactable = false;
         destroyButton.interactable = true;
+        noneButton.interactable = true;
+    }
+
+    public void OnNoneButtonPressed() {
+        stateMachine.SetState(BuildingState.None);
+        buildButton.interactable = true;
+        destroyButton.interactable = true;
+        noneButton.interactable = false;
     }
     
     public void OnDestroyButtonPressed() {
         stateMachine.SetState(BuildingState.Destroy);
         buildButton.interactable = true;
         destroyButton.interactable = false;
+        noneButton.interactable = true;
     }
 
     public void OnDestroyAllButtonPressed() {

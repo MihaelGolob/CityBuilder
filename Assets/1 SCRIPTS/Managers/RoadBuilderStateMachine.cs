@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuildingState { Build, Destroy}
+public enum BuildingState { Build, Destroy, None}
 
 public class RoadBuilderStateMachine : MonoBehaviour {
     [SerializeField] private SelectSystem selectSystem;

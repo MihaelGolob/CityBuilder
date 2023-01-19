@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9075898118355418000}
   - component: {fileID: 9075898118355418001}
   m_Layer: 0
-  m_Name: Intersection
+  m_Name: 4-way Intersection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -36,7 +36,8 @@ public class Intersection : MonoBehaviour {
             
             
             _trafficLights[1].SetGreenLight();
-            _trafficLights[3].SetGreenLight();
+            if (_trafficLights.Count > 3)
+                _trafficLights[3].SetGreenLight();
         } 
         else {
             _trafficLights[0].SetGreenLight();
@@ -44,7 +45,8 @@ public class Intersection : MonoBehaviour {
             
             
             _trafficLights[1].SetRedLight();
-            _trafficLights[3].SetRedLight();
+            if (_trafficLights.Count > 3)
+                _trafficLights[3].SetRedLight();
         }
 
         StartCoroutine(ToggleColliders());
@@ -60,14 +62,16 @@ public class Intersection : MonoBehaviour {
             _colliders[2].gameObject.SetActive(true); 
             
             _colliders[1].gameObject.SetActive(false);
-            _colliders[3].gameObject.SetActive(false); 
+            if (_colliders.Count > 3)
+                _colliders[3].gameObject.SetActive(false); 
         }
         else {
             _colliders[0].gameObject.SetActive(false);
             _colliders[2].gameObject.SetActive(false);
             
             _colliders[1].gameObject.SetActive(true);
-            _colliders[3].gameObject.SetActive(true);
+            if (_colliders.Count > 3)
+                _colliders[3].gameObject.SetActive(true);
         }
     }
 }

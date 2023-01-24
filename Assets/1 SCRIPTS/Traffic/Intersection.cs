@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Intersection : MonoBehaviour {
     [SerializeField] private List<TrafficLight> _trafficLights;
     [SerializeField] private List<Collider> _colliders;
     [SerializeField] private float _changeInterval = 15f;
 
+    private float _randomOffset;
     private bool _firstPairGreen = true;
     private float _timer;
 
@@ -17,8 +19,9 @@ public class Intersection : MonoBehaviour {
         _trafficLights[2].SetGreenLight();
         _colliders[0].gameObject.SetActive(false);
         _colliders[2].gameObject.SetActive(false);
-        
-        _timer = _changeInterval;
+
+        _randomOffset = Random.Range(1, 10);
+        _timer = _changeInterval + _randomOffset;
     }
 
     private void Update() {

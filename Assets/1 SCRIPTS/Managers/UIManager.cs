@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Button noneButton;
 
     private void Start() {
-        buildButton.interactable = false;
+        OnNoneButtonPressed();
     }
 
     public void OnBuildButtonPressed() {

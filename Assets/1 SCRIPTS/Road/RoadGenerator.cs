@@ -52,9 +52,9 @@ public static class RoadGenerator {
 
     private static (Vector3[] vertices, int[] triangles, Color[] colors) GenerateStraightRoad(Vector3 position) {
         // generate vertices
-        var vertices = new Vector3[VertexResolution * 12];
-        var colors = new Color[VertexResolution * 12];
-        var triangles = new int[VertexResolution * 10 * 3];
+        var vertices = new Vector3[VertexResolution * 16];
+        var colors = new Color[VertexResolution * 16];
+        var triangles = new int[VertexResolution * 14 * 3];
 
 
         var vertexIndex = 0;
@@ -77,6 +77,16 @@ public static class RoadGenerator {
 
             vertexIndex += 6;
         }
+        // add pavement vertical faces
+        vertices[12] = new Vector3(position.x, position.y, position.z);
+        vertices[13] = new Vector3(position.x, position.y, position.z + TileSize);
+        vertices[14] = new Vector3(position.x + TileSize, position.y, position.z);
+        vertices[15] = new Vector3(position.x + TileSize, position.y, position.z + TileSize);
+        
+        colors[12] = PavementColor;
+        colors[13] = PavementColor;
+        colors[14] = PavementColor;
+        colors[15] = PavementColor;
 
         // generate triangles
         var triangleIndex = 0;
@@ -121,7 +131,23 @@ public static class RoadGenerator {
             triangles[triangleIndex + 28] = i + 10;
             triangles[triangleIndex + 29] = i + 11;
 
-            triangleIndex += 30;
+            triangles[triangleIndex + 30] = 12;
+            triangles[triangleIndex + 31] = 13;
+            triangles[triangleIndex + 32] = 0;
+            
+            triangles[triangleIndex + 33] = 13;
+            triangles[triangleIndex + 34] = 6;
+            triangles[triangleIndex + 35] = 0;
+            
+            triangles[triangleIndex + 36] = 14;
+            triangles[triangleIndex + 37] = 5;
+            triangles[triangleIndex + 38] = 15;
+            
+            triangles[triangleIndex + 39] = 15;
+            triangles[triangleIndex + 40] = 5;
+            triangles[triangleIndex + 41] = 11;
+
+            triangleIndex += 14 * 3;
         }
         
         return (vertices, triangles, colors); 
@@ -336,9 +362,9 @@ public static class RoadGenerator {
     }
 
     private static (Vector3[] vertices, int[] triangles, Color[] color) GenerateEndRoad(Vector3 position) {
-        var vertices = new Vector3[12];
-        var colors = new Color[12];
-        var triangles = new int[42];
+        var vertices = new Vector3[16];
+        var colors = new Color[16];
+        var triangles = new int[60];
         
         // create vertices for road
         vertices[0] = new Vector3(position.x, position.y + PavementHeight, position.z);
@@ -356,6 +382,11 @@ public static class RoadGenerator {
         
         vertices[10] = new Vector3(position.x + TileSize, position.y + PavementHeight, position.z);
         vertices[11] = new Vector3(position.x + TileSize, position.y + PavementHeight, position.z + TileSize);
+
+        vertices[12] = new Vector3(position.x, position.y, position.z + TileSize);
+        vertices[13] = position;
+        vertices[14] = new Vector3(position.x + TileSize, position.y, position.z);
+        vertices[15] = new Vector3(position.x + TileSize, position.y, position.z + TileSize);
         
         // create colors for road
         colors[0] = PavementColor;
@@ -373,6 +404,11 @@ public static class RoadGenerator {
         
         colors[10] = PavementColor;
         colors[11] = PavementColor;
+
+        colors[12] = PavementColor;
+        colors[13] = PavementColor;
+        colors[14] = PavementColor;
+        colors[15] = PavementColor;
         
         // create triangles
         // pavement 
@@ -427,14 +463,35 @@ public static class RoadGenerator {
         triangles[40] = 9;
         triangles[41] = 8;
         
+        // vertical faces
+        triangles[42] = 12;
+        triangles[43] = 1;
+        triangles[44] = 0;
+        triangles[45] = 13;
+        triangles[46] = 12;
+        triangles[47] = 0;
+        
+        triangles[48] = 13;
+        triangles[49] = 0;
+        triangles[50] = 10;
+        triangles[51] = 14;
+        triangles[52] = 13;
+        triangles[53] = 10;
+        
+        triangles[54] = 14;
+        triangles[55] = 10;
+        triangles[56] = 15;
+        triangles[57] = 15;
+        triangles[58] = 10;
+        triangles[59] = 11;
 
         return (vertices, triangles, colors);
     }
 
     private static (Vector3[] vertices, int[] triangles, Color[] color) GenerateTurnRoad(Vector3 position) {
-        var vertices = new Vector3[16];
-        var colors = new Color[16];
-        var triangles = new int[54];
+        var vertices = new Vector3[19];
+        var colors = new Color[19];
+        var triangles = new int[66];
         
         // create vertices for road
         vertices[0] = new Vector3(position.x, position.y + PavementHeight, position.z);
@@ -456,6 +513,10 @@ public static class RoadGenerator {
         
         vertices[14] = new Vector3(position.x + TileSize, position.y, position.z + PavementWidth);
         vertices[15] = new Vector3(position.x + TileSize, position.y, position.z + TileSize - PavementWidth);
+
+        vertices[16] = position;
+        vertices[17] = new Vector3(position.x, position.y, position.z + TileSize);
+        vertices[18] = new Vector3(position.x + TileSize, position.y, position.z + TileSize);
         
         // create colors for road
         colors[0] = PavementColor;
@@ -477,6 +538,10 @@ public static class RoadGenerator {
         
         colors[14] = RoadColor;
         colors[15] = RoadColor;
+        
+        colors[16] = PavementColor;
+        colors[17] = PavementColor;
+        colors[18] = PavementColor;
         
         // create triangles
         // pavement
@@ -530,6 +595,21 @@ public static class RoadGenerator {
         triangles[40] = 3;
         triangles[41] = 12;
         
+        // vertical faces
+        triangles[54] = 16;
+        triangles[55] = 17;
+        triangles[56] = 0;
+        triangles[57] = 17;
+        triangles[58] = 1;
+        triangles[59] = 0;
+        
+        triangles[60] = 18;
+        triangles[61] = 13;
+        triangles[62] = 17;
+        triangles[63] = 17;
+        triangles[64] = 13;
+        triangles[65] = 1;
+        
         // road
         triangles[42] = 6;
         triangles[43] = 4;
@@ -549,9 +629,9 @@ public static class RoadGenerator {
     }
 
     private static (Vector3[] verticse, int[] triangles, Color[] color) GenerateTRoad(Vector3 position) {
-        var vertices = new Vector3[20];
-        var colors = new Color[20];
-        var triangles = new int[60];
+        var vertices = new Vector3[22];
+        var colors = new Color[22];
+        var triangles = new int[66];
 
         // create vertices
         vertices[0] = new Vector3(position.x, position.y + PavementHeight, position.z);
@@ -581,6 +661,9 @@ public static class RoadGenerator {
         
         vertices[18] = new Vector3(position.x + TileSize, position.y, position.z + PavementWidth);
         vertices[19] = new Vector3(position.x + TileSize, position.y, position.z + TileSize - PavementWidth);
+
+        vertices[20] = new Vector3(position.x, position.y, position.z + TileSize);
+        vertices[21] = new Vector3(position.x + TileSize, position.y, position.z + TileSize);
         
         // create colors
         colors[0] = PavementColor;
@@ -610,6 +693,9 @@ public static class RoadGenerator {
         
         colors[18] = RoadColor;
         colors[19] = RoadColor;
+        
+        colors[20] = PavementColor;
+        colors[21] = PavementColor;
         
         // create triangles
         // pavement
@@ -670,6 +756,15 @@ public static class RoadGenerator {
         triangles[46] = 15;
         triangles[47] = 11;
         
+        // vertical faces
+        triangles[60] = 20;
+        triangles[61] = 21;
+        triangles[62] = 17;
+        
+        triangles[63] = 20;
+        triangles[64] = 17;
+        triangles[65] = 3;
+        
         // road
         triangles[48] = 4;
         triangles[49] = 5;
@@ -684,7 +779,7 @@ public static class RoadGenerator {
         triangles[57] = 13;
         triangles[58] = 8;
         triangles[59] = 9;
-
+        
         return (vertices, triangles, colors);
     }
     

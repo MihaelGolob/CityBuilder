@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuildingState { Build, Destroy, None}
+public enum BuildingState { Build, Destroy, PlaceVehicle, None}
 
 public class RoadBuilderStateMachine : MonoBehaviour {
     [SerializeField] private SelectSystem selectSystem;
+    [Header("Vehicle settings")]
+    [SerializeField] private List<GameObject> vehiclePrefabs;
+    [SerializeField] private List<Transform> vehicleTargets;
     
     // private variables
     private BuildingState _currentState;
+    private VehiclePlacement _vehiclePlacement;
     
     // public getters
     public BuildingState CurrentState => _currentState;
@@ -26,6 +30,10 @@ public class RoadBuilderStateMachine : MonoBehaviour {
             case BuildingState.Destroy:
                 selectSystem.Destroy();
                 break;
+            case BuildingState.PlaceVehicle:
+                _vehiclePlacement ??= new VehiclePlacement(vehiclePrefabs, vehicleTargets);
+                _vehiclePlacement.PlaceVehicle();
+                break;
         }
     }
     
@@ -33,5 +41,7 @@ public class RoadBuilderStateMachine : MonoBehaviour {
     public void SetState(BuildingState state) {
         _currentState = state;
         selectSystem.ChangeStateTransitions();
+        _vehiclePlacement?.DestroyVehicle();
+        _vehiclePlacement = null;
     }
 }

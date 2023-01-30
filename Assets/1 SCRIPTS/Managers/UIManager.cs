@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private Button buildButton;
     [SerializeField] private Button destroyButton;
     [SerializeField] private Button noneButton;
+    [SerializeField] private Button newVehicleButton;
 
     private void Start() {
         OnNoneButtonPressed();
@@ -23,6 +24,15 @@ public class UIManager : MonoBehaviour {
         buildButton.interactable = false;
         destroyButton.interactable = true;
         noneButton.interactable = true;
+        newVehicleButton.interactable = true;
+    }
+
+    public void OnNewVehicleButtonPressed() {
+        stateMachine.SetState(BuildingState.PlaceVehicle);
+        buildButton.interactable = true;
+        destroyButton.interactable = true;
+        noneButton.interactable = true;
+        newVehicleButton.interactable = false;
     }
 
     public void OnNoneButtonPressed() {
@@ -30,6 +40,7 @@ public class UIManager : MonoBehaviour {
         buildButton.interactable = true;
         destroyButton.interactable = true;
         noneButton.interactable = false;
+        newVehicleButton.interactable = true;
     }
     
     public void OnDestroyButtonPressed() {
@@ -37,6 +48,7 @@ public class UIManager : MonoBehaviour {
         buildButton.interactable = true;
         destroyButton.interactable = false;
         noneButton.interactable = true;
+        newVehicleButton.interactable = true;
     }
 
     public void OnDestroyAllButtonPressed() {

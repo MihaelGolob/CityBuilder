@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Vehicle : MonoBehaviour {
-    [SerializeField] private List<Transform> targets;
+    [SerializeField] private List<Transform> targets = new ();
     [SerializeField] private float visionDistance = 4f;
+    [SerializeField] private bool autoStart = false; 
 
     // private variables
     // components
@@ -14,16 +15,23 @@ public class Vehicle : MonoBehaviour {
 
     private List<Vector3> _path;
     private int _currentNode = 0;
+    private bool _onPosition = false;
 
     #region Unity_methods
 
     private IEnumerator Start() {
         _navAgent = GetComponent<NavMeshAgent>();
 
+        if (!autoStart) yield break;
         // wait for the navigation system to setup
         yield return new WaitForSeconds(2f);
 
-        _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
+        _path = NavigationSystem.Instance.GetShortestPath(transform.position, targets[0].position, CalculateOrientation());
+        if (_path.Count == 0) {
+            _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
+            _onPosition = true;
+        }
+            
         _navAgent.SetDestination(_path[_currentNode]);
     }
 
@@ -44,6 +52,22 @@ public class Vehicle : MonoBehaviour {
     }
 
     #endregion
+    
+    #region public methods
+    
+    public void StartVehicle() {
+        if (targets.Count < 2) return;
+        _navAgent = GetComponent<NavMeshAgent>();
+        
+        _path = NavigationSystem.Instance.GetShortestPath(transform.position, targets[0].position, CalculateOrientation());
+        _navAgent.SetDestination(_path[_currentNode]);
+    }
+    
+    public void AddTarget(Transform target) {
+        targets.Add(target);
+    }
+    
+    #endregion
 
     #region private methods
 
@@ -53,6 +77,13 @@ public class Vehicle : MonoBehaviour {
 
         _currentNode++;
         if (_currentNode >= _path.Count) {
+            if (!_onPosition) {
+                _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
+                _currentNode = 0;
+                _onPosition = true;
+                _navAgent.SetDestination(_path[_currentNode]);
+                return;
+            }
             // swap start and finish 
             (targets[0], targets[1]) = (targets[1], targets[0]);
 

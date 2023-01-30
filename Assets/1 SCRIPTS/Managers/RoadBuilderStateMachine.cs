@@ -31,7 +31,7 @@ public class RoadBuilderStateMachine : MonoBehaviour {
                 selectSystem.Destroy();
                 break;
             case BuildingState.PlaceVehicle:
-                _vehiclePlacement ??= new VehiclePlacement(vehiclePrefabs, vehicleTargets);
+                _vehiclePlacement ??= new VehiclePlacement(selectSystem, SetState, vehiclePrefabs, vehicleTargets);
                 _vehiclePlacement.PlaceVehicle();
                 break;
         }

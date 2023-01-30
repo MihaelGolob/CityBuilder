@@ -35,7 +35,7 @@ public class RoadNode {
         if (before == Orientation.Up && after == Orientation.Right)
             return new Vector3(position.x + margin, 0, position.y - margin);
         if (before == Orientation.Up && after == Orientation.Left)
-            return new Vector3(position.x, 0, position.y + margin);
+            return new Vector3(position.x + margin, 0, position.y);
         
         if (before == Orientation.Down && after == Orientation.Down)
             return new Vector3(position.x - margin, 0, position.y);

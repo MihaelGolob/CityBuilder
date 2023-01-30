@@ -16,9 +16,15 @@ public class VehiclePlacement {
     
     private bool _vehiclePlaced = false;
 
-    public VehiclePlacement(List<GameObject> vehicles, List<Transform> targets) {
+    private SelectSystem _selectSystem;
+    private Action<BuildingState> _changeState;
+
+    public VehiclePlacement(SelectSystem selectSystem, Action<BuildingState> changeState, List<GameObject> vehicles, List<Transform> targets) {
         if (targets.Count < 2) throw new Exception("No vehicles to choose from!");
         if (vehicles.Count == 0) throw new Exception("Not enough targets!");
+        
+        _selectSystem = selectSystem;
+        _changeState = changeState;
         
         var prefab = vehicles[Random.Range(0, vehicles.Count)];
         _selectedVehicle = Object.Instantiate(prefab);
@@ -51,7 +57,7 @@ public class VehiclePlacement {
 
         _selectedVehicle.transform.position = new Vector3(mouseWorldPosition.x,2, mouseWorldPosition.z);
         
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !_selectSystem.LockSelection) {
             DropVehicle();
         }
     }
@@ -68,5 +74,7 @@ public class VehiclePlacement {
         _selectedVehicle.GetComponent<NavMeshAgent>().enabled = true;
         _vehicleScript.enabled = true;
         _vehicleScript.StartVehicle();
+        
+        _changeState(BuildingState.None);
     }
 }

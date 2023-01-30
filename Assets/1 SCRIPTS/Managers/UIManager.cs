@@ -19,36 +19,28 @@ public class UIManager : MonoBehaviour {
         OnNoneButtonPressed();
     }
 
+    private void Update() {
+        // refresh button states
+        buildButton.interactable = stateMachine.CurrentState != BuildingState.Build;
+        destroyButton.interactable = stateMachine.CurrentState != BuildingState.Destroy;
+        noneButton.interactable = stateMachine.CurrentState != BuildingState.None;
+        newVehicleButton.interactable = stateMachine.CurrentState != BuildingState.PlaceVehicle;
+    }
+
     public void OnBuildButtonPressed() {
         stateMachine.SetState(BuildingState.Build);
-        buildButton.interactable = false;
-        destroyButton.interactable = true;
-        noneButton.interactable = true;
-        newVehicleButton.interactable = true;
     }
 
     public void OnNewVehicleButtonPressed() {
         stateMachine.SetState(BuildingState.PlaceVehicle);
-        buildButton.interactable = true;
-        destroyButton.interactable = true;
-        noneButton.interactable = true;
-        newVehicleButton.interactable = false;
     }
 
     public void OnNoneButtonPressed() {
         stateMachine.SetState(BuildingState.None);
-        buildButton.interactable = true;
-        destroyButton.interactable = true;
-        noneButton.interactable = false;
-        newVehicleButton.interactable = true;
     }
     
     public void OnDestroyButtonPressed() {
         stateMachine.SetState(BuildingState.Destroy);
-        buildButton.interactable = true;
-        destroyButton.interactable = false;
-        noneButton.interactable = true;
-        newVehicleButton.interactable = true;
     }
 
     public void OnDestroyAllButtonPressed() {

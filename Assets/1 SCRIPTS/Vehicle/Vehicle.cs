@@ -98,7 +98,7 @@ public class Vehicle : MonoBehaviour {
         // slow down or stop the vehicle if too close to another vehicle
         // cast ray to check if there is another vehicle in front of this vehicle
         var ray = new Ray(transform.position + Vector3.up * 0.5f, transform.forward);
-        Debug.DrawRay(transform.position + Vector3.up * 0.5f, transform.forward * visionDistance);
+        Debug.DrawRay(transform.position + Vector3.up, transform.forward * visionDistance);
 
         if (Physics.Raycast(ray, out var hit, visionDistance)) {
             if (hit.collider.CompareTag("Vehicle")) {

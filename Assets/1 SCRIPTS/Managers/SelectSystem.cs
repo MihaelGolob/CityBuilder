@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class SelectSystem : MonoBehaviour {
     // inspector assigned
     [SerializeField] private RoadRenderer roadRenderer;
+    [Header("Prefabs")]
+    [SerializeField] private GameObject trafficLightPrefab;
 
     // public
     public bool LockSelection { get; set; }
@@ -98,6 +100,20 @@ public class SelectSystem : MonoBehaviour {
         }
     }
 
+    public void PlaceTrafficLights() {
+        var gridPos = GetMouseGridPosition();
+        // highlight the tile
+        roadRenderer.HighlightRoadToPlaceTrafficLight(gridPos);
+        
+        if (Input.GetMouseButtonDown(0) && !LockSelection) {
+            if (!roadRenderer.RoadExists(gridPos)) return;
+
+            // place traffic light
+            var position = new Vector3(gridPos.x, 0f, gridPos.z);
+            Instantiate(trafficLightPrefab, position, Quaternion.identity);
+        }
+    }
+    
     public void ChangeStateTransitions() {
         roadRenderer.RemovePreviewRoad();
     }
@@ -137,4 +153,5 @@ public class SelectSystem : MonoBehaviour {
     }
 
     #endregion
+
 }

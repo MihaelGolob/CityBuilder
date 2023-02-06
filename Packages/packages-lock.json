@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.ineor.audio-system": {
-      "version": "file:/Users/m.golob/Documents/Ineor Unity Packages/audio-system",
+      "version": "https://github.com/MihaelGolob/audio-system.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "208cec7d35a83b1b0b3a738f85afd775bf754f42"
     },
     "com.unity.2d.tilemap": {
       "version": "1.0.0",

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.MUIP;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -10,24 +12,39 @@ public class UIManager : MonoBehaviour {
     [SerializeField] private RoadRenderer roadRenderer;
 
     [Header("UI elements")] 
-    [SerializeField] private Button buildButton;
-    [SerializeField] private Button destroyButton;
-    [SerializeField] private Button noneButton;
-    [SerializeField] private Button newVehicleButton;
+    [SerializeField] private GameObject buildWindow;
+    [SerializeField] private ButtonManager handButton;
+    [SerializeField] private ButtonManager buildWindowButton;
+    [SerializeField] private ButtonManager destroyButton;
+    [SerializeField] private ButtonManager buildRoadButton;
+    [SerializeField] private ButtonManager trafficLightButton;
+    [SerializeField] private SliderManager zoomSlider;
 
     private void Start() {
         OnNoneButtonPressed();
     }
 
     private void Update() {
-        // refresh button states
-        buildButton.interactable = stateMachine.CurrentState != BuildingState.Build;
-        destroyButton.interactable = stateMachine.CurrentState != BuildingState.Destroy;
-        noneButton.interactable = stateMachine.CurrentState != BuildingState.None;
-        newVehicleButton.interactable = stateMachine.CurrentState != BuildingState.PlaceVehicle;
+        buildWindowButton.Interactable(!buildWindow.activeSelf);
+        handButton.Interactable(stateMachine.CurrentState != BuildingState.None);
+        buildRoadButton.Interactable(stateMachine.CurrentState != BuildingState.Build);
+        destroyButton.Interactable(stateMachine.CurrentState != BuildingState.Destroy);
+        trafficLightButton.Interactable(stateMachine.CurrentState != BuildingState.PlaceTrafficLights);
+    }
+    
+    #region Button Events
+
+    public void OnCloseBuildWindow() {
+        buildWindow.SetActive(false);
+        stateMachine.SetState(BuildingState.None);
     }
 
     public void OnBuildButtonPressed() {
+        buildWindow.SetActive(!buildWindow.activeSelf);
+        stateMachine.SetState(BuildingState.None);
+    }
+
+    public void OnBuildRoadButtonPressed() {
         stateMachine.SetState(BuildingState.Build);
     }
 
@@ -50,4 +67,10 @@ public class UIManager : MonoBehaviour {
     public void OnSaveButtonPressed() {
         roadRenderer.SaveMesh();
     }
+    
+    public void OnPlaceTrafficLightsButtonPressed() {
+        stateMachine.SetState(BuildingState.PlaceTrafficLights);
+    }
+    
+    #endregion
 }

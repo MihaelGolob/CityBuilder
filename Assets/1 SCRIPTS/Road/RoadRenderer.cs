@@ -18,6 +18,8 @@ public class RoadRenderer : MonoBehaviour {
     [SerializeField] private Color pavementPreviewColor;
     [SerializeField] private Color roadDestroyColor;
     [SerializeField] private Color pavementDestroyColor;
+    [SerializeField] private Color lightRoadColor;
+    [SerializeField] private Color lightPavementColor;
 
     // private 
     private MeshFilter _meshFilter;
@@ -114,6 +116,11 @@ public class RoadRenderer : MonoBehaviour {
 
         return null;
     }
+    
+    private void HighlightRoad(Vector3 pos, Color roadColor, Color pavementColor) {
+        _roadMap.HighlightRoad(pos.x, pos.z, roadColor, pavementColor);
+        UpdateMesh();
+    }
 
     #endregion
 
@@ -175,10 +182,13 @@ public class RoadRenderer : MonoBehaviour {
     }
 
     public void HighlightRoadToDestroy(Vector3 pos) {
-        _roadMap.HighlightRoad(pos.x, pos.z, roadDestroyColor, pavementDestroyColor);
-        UpdateMesh();
+        HighlightRoad(pos, roadDestroyColor, pavementDestroyColor);
     }
 
+    public void HighlightRoadToPlaceTrafficLight(Vector3 pos) {
+        HighlightRoad(pos, lightRoadColor, lightPavementColor);
+    }
+    
     public bool RoadExists(Vector3 pos) {
         return _roadMap.RoadExists(pos.x, pos.z);
     }

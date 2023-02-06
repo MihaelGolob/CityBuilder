@@ -323,24 +323,6 @@
       "Item3": 0.3
     }
   },
-  "(2, -2)": {
-    "Type": 0,
-    "Position": {
-      "Item1": 9.0,
-      "Item2": -18.0
-    },
-    "Orientation": 3,
-    "RoadColor": {
-      "Item1": 0.04,
-      "Item2": 0.04,
-      "Item3": 0.04
-    },
-    "PavementColor": {
-      "Item1": 0.3,
-      "Item2": 0.3,
-      "Item3": 0.3
-    }
-  },
   "(-3, -1)": {
     "Type": 0,
     "Position": {
@@ -420,24 +402,6 @@
       "Item2": -18.0
     },
     "Orientation": 2,
-    "RoadColor": {
-      "Item1": 0.04,
-      "Item2": 0.04,
-      "Item3": 0.04
-    },
-    "PavementColor": {
-      "Item1": 0.3,
-      "Item2": 0.3,
-      "Item3": 0.3
-    }
-  },
-  "(1, -2)": {
-    "Type": 0,
-    "Position": {
-      "Item1": 0.0,
-      "Item2": -18.0
-    },
-    "Orientation": 3,
     "RoadColor": {
       "Item1": 0.04,
       "Item2": 0.04,
@@ -579,24 +543,6 @@
     "Type": 0,
     "Position": {
       "Item1": -18.0,
-      "Item2": -18.0
-    },
-    "Orientation": 3,
-    "RoadColor": {
-      "Item1": 0.04,
-      "Item2": 0.04,
-      "Item3": 0.04
-    },
-    "PavementColor": {
-      "Item1": 0.3,
-      "Item2": 0.3,
-      "Item3": 0.3
-    }
-  },
-  "(-1, -2)": {
-    "Type": 0,
-    "Position": {
-      "Item1": -9.0,
       "Item2": -18.0
     },
     "Orientation": 3,
@@ -996,6 +942,60 @@
       "Item2": 27.0
     },
     "Orientation": 0,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(-1, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": -9.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(2, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 9.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
+    "RoadColor": {
+      "Item1": 0.04,
+      "Item2": 0.04,
+      "Item3": 0.04
+    },
+    "PavementColor": {
+      "Item1": 0.3,
+      "Item2": 0.3,
+      "Item3": 0.3
+    }
+  },
+  "(1, -2)": {
+    "Type": 0,
+    "Position": {
+      "Item1": 0.0,
+      "Item2": -18.0
+    },
+    "Orientation": 3,
     "RoadColor": {
       "Item1": 0.04,
       "Item2": 0.04,

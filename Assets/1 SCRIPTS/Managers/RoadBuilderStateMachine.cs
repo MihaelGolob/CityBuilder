@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BuildingState { Build, Destroy, PlaceVehicle, None}
+public enum BuildingState { Build, Destroy, PlaceVehicle, PlaceTrafficLights, None}
 
 public class RoadBuilderStateMachine : MonoBehaviour {
     [SerializeField] private SelectSystem selectSystem;
@@ -29,6 +29,9 @@ public class RoadBuilderStateMachine : MonoBehaviour {
                 break;
             case BuildingState.Destroy:
                 selectSystem.Destroy();
+                break;
+            case BuildingState.PlaceTrafficLights:
+                selectSystem.PlaceTrafficLights();
                 break;
             case BuildingState.PlaceVehicle:
                 _vehiclePlacement ??= new VehiclePlacement(selectSystem, SetState, vehiclePrefabs, vehicleTargets);

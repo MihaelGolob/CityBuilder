@@ -192,6 +192,12 @@ public class RoadRenderer : MonoBehaviour {
     public bool RoadExists(Vector3 pos) {
         return _roadMap.RoadExists(pos.x, pos.z);
     }
+    
+    public int CountNeighbours(Vector3 pos) => _roadMap.CountNeighbors(pos.x, pos.z);
+    
+    public bool TrafficLightExists(Vector3 pos) => _roadMap.TrafficLightExists(pos.x, pos.z);
+        
+    public Orientation GetOrientation(Vector3 pos) => _roadMap.GetTileOrientation(pos.x, pos.z);
 
     public void SaveMesh() {
         // save roadmap as json

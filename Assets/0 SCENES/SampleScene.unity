@@ -5648,7 +5648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &491830541
 Transform:
   m_ObjectHideFlags: 0
@@ -10633,7 +10633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadRenderer: {fileID: 427946434}
-  trafficLightPrefab: {fileID: 9075898118355418015, guid: 4ff9249c3e7384974aaf80c694a264c2,
+  intersection4Prefab: {fileID: 9075898118355418015, guid: 4ff9249c3e7384974aaf80c694a264c2,
+    type: 3}
+  intersection3Prefab: {fileID: 9075898118355418015, guid: 9e1458e878d0e412299494b39f7709ca,
     type: 3}
 --- !u!1 &1081245094
 GameObject:

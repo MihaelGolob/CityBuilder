@@ -8,6 +8,7 @@ public class RoadTile {
     public RoadType Type { get; private set; }
     public (float x, float y) Position { get; private set; }
     public bool Preview { get; set; }
+    public bool HasTrafficLights { get; set; }
 
     private Color _roadColor;
     private Color _pavementColor;

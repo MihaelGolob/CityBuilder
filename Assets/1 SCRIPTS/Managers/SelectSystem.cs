@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class SelectSystem : MonoBehaviour {
     // inspector assigned
     [SerializeField] private RoadRenderer roadRenderer;
+    [FormerlySerializedAs("trafficLightPrefab")]
     [Header("Prefabs")]
-    [SerializeField] private GameObject trafficLightPrefab;
+    [SerializeField] private GameObject intersection4Prefab;
+    [SerializeField] private GameObject intersection3Prefab;
 
     // public
     public bool LockSelection { get; set; }
@@ -103,17 +106,39 @@ public class SelectSystem : MonoBehaviour {
     public void PlaceTrafficLights() {
         var gridPos = GetMouseGridPosition();
         // highlight the tile
+        if (!roadRenderer.RoadExists(gridPos)) return;
+        if (roadRenderer.TrafficLightExists(gridPos)) return;
+
+        var intersectionCount = roadRenderer.CountNeighbours(gridPos);
+        if (intersectionCount <= 2) return;
+        
         roadRenderer.HighlightRoadToPlaceTrafficLight(gridPos);
         
         if (Input.GetMouseButtonDown(0) && !LockSelection) {
-            if (!roadRenderer.RoadExists(gridPos)) return;
+            var orientation = roadRenderer.GetOrientation(gridPos);
 
             // place traffic light
             var position = new Vector3(gridPos.x, 0f, gridPos.z);
-            Instantiate(trafficLightPrefab, position, Quaternion.identity);
+            var prefab = intersectionCount == 3 ? intersection3Prefab : intersection4Prefab;
+            var rotation = CalculateRotation(intersectionCount, orientation);
+            Instantiate(prefab, position, rotation, transform);
         }
     }
-    
+
+    private Quaternion CalculateRotation(int intersectionCount, Orientation orientation) {
+        if (intersectionCount == 4) return Quaternion.identity;
+        // this method works on the presumption that the default rotation of the prefab is 'south' 
+        var rotation = orientation switch {
+            Orientation.Up => Quaternion.Euler(0, 0, 0),
+            Orientation.Down => Quaternion.Euler(0, 180, 0),
+            Orientation.Left => Quaternion.Euler(0, 270, 0),
+            Orientation.Right => Quaternion.Euler(0, 90, 0),
+            _ => Quaternion.identity
+        };
+
+        return rotation;
+    }
+
     public void ChangeStateTransitions() {
         roadRenderer.RemovePreviewRoad();
     }

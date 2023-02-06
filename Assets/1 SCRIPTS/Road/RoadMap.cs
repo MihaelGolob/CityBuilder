@@ -123,8 +123,30 @@ public class RoadMap {
         return tile?.Preview == false;
     }
     
+    public int CountNeighbors(float x, float y) {
+        var mapCoord = ToMapCoordinates(x, y);
+        var neighbours = GetAdjacent(mapCoord.x, mapCoord.y);
+        
+        return neighbours.Count;
+    }
+    
+    public bool TrafficLightExists(float x, float y) {
+        var mapCoord = ToMapCoordinates(x, y);
+        _roadMap.TryGetValue(mapCoord, out var tile);
+        return tile?.HasTrafficLights ?? true;
+    }
+    
+    public Orientation GetTileOrientation(float x, float z) {
+        var mapCoord = ToMapCoordinates(x, z);
+        _roadMap.TryGetValue(mapCoord, out var tile);
+        
+        return tile?.Orientation ?? Orientation.None;
+    }
+    
     #endregion
 
+    #region private methods
+    
     private void AddToMap((int x, int y) position, RoadTile roadTile, bool isPreview) {
         var roadCenterPos = (roadTile.Position.x + RoadGenerator.TileSize/2, roadTile.Position.y + RoadGenerator.TileSize/2);
         _roadMap[position] = roadTile;
@@ -137,7 +159,7 @@ public class RoadMap {
         NavigationSystem.Instance.RemoveRoadNode(position);
     }
     
-    public static (int x, int y) ToMapCoordinates(float x, float y) {
+    private static (int x, int y) ToMapCoordinates(float x, float y) {
         var mapX = Mathf.CeilToInt(Mathf.Abs(x) / RoadGenerator.TileSize);
         var mapY = Mathf.CeilToInt(Mathf.Abs(y) / RoadGenerator.TileSize);
         return ((int)Mathf.Sign(x) * mapX, (int)Mathf.Sign(y) * mapY);
@@ -210,5 +232,6 @@ public class RoadMap {
 
         return adjacent;
     }
-
+    
+    #endregion
 }

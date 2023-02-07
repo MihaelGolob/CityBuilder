@@ -39,6 +39,10 @@ public class NavigationSystem : MonoBehaviour {
         
         // get the shortest path between the two nodes
         var path = _graph.FindPath(startNode, endNode, startingOrientation);
+        
+        // if there is no path, return an empty list
+        if (path.Count <= 1) return new List<Vector3>();
+        
         // convert to a list of vector3
         var result = new List<Vector3>();
         for (var i = 0; i < path.Count; i++) {

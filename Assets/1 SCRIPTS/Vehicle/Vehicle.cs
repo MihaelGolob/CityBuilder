@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Vehicle : MonoBehaviour {
-    [SerializeField] private List<Transform> targets = new ();
+    [SerializeField] private List<Transform> targets = new();
     [SerializeField] private float visionDistance = 4f;
-    [SerializeField] private bool autoStart = false; 
+    [SerializeField] private bool autoStart = false;
 
     // private variables
     // components
@@ -16,6 +16,7 @@ public class Vehicle : MonoBehaviour {
     private List<Vector3> _path;
     private int _currentNode = 0;
     private bool _onPosition = false;
+    private bool _hasBeenOnNavMesh = false;
 
     #region Unity_methods
 
@@ -31,13 +32,16 @@ public class Vehicle : MonoBehaviour {
             _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
             _onPosition = true;
         }
-            
+
         _navAgent.SetDestination(_path[_currentNode]);
     }
 
     private void Update() {
+        if (_path?.Count <= 1) return;
+        
         MoveToNextNode();
         DetectVehicles();
+        RecalculatePathIfNotOnNavMesh();
     }
 
     private void OnDrawGizmos() {
@@ -52,24 +56,47 @@ public class Vehicle : MonoBehaviour {
     }
 
     #endregion
-    
+
     #region public methods
-    
+
     public void StartVehicle() {
         if (targets.Count < 2) return;
         _navAgent = GetComponent<NavMeshAgent>();
-        
+
         _path = NavigationSystem.Instance.GetShortestPath(transform.position, targets[0].position, CalculateOrientation());
         _navAgent.SetDestination(_path[_currentNode]);
     }
-    
+
     public void AddTarget(Transform target) {
         targets.Add(target);
     }
-    
+
     #endregion
 
     #region private methods
+
+    private void RecalculatePathIfNotOnNavMesh() {
+        // check if next point is on navmesh
+        if (_path == null || _path.Count == 0) return;
+        if (_currentNode >= _path.Count) return;
+        var result = NavMesh.SamplePosition(_path[_currentNode], out var hit, 0.6f, NavMesh.AllAreas);
+        // recalculate path if next point is not on navmesh
+        if (!result) {
+            if (_currentNode == _path.Count - 1) {
+                (targets[0], targets[1]) = (targets[1], targets[0]);
+                targets[0].position = _path[_currentNode - 1];
+                _path = NavigationSystem.Instance.GetShortestPath(targets[0].position, targets[1].position, CalculateOrientation());
+            }
+            else {
+                _path = NavigationSystem.Instance.GetShortestPath(transform.position, targets[1].position, CalculateOrientation());
+            }
+
+            if (_path.Count == 0) return;
+
+            _currentNode = 0;
+            _navAgent.SetDestination(_path[_currentNode]);
+        }
+    }
 
     private void MoveToNextNode() {
         if (_path == null || _path.Count == 0) return;
@@ -84,6 +111,7 @@ public class Vehicle : MonoBehaviour {
                 _navAgent.SetDestination(_path[_currentNode]);
                 return;
             }
+
             // swap start and finish 
             (targets[0], targets[1]) = (targets[1], targets[0]);
 

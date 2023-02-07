@@ -74,7 +74,9 @@ public class NavigationGraph {
 
         while (current != start) {
             path.Insert(0, _nodes[current]);
-            current = parents[current];
+            
+            if (parents.ContainsKey(current)) current = parents[current];
+            else break;
         }
         
         return path;

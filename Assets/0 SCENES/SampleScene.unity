@@ -235,7 +235,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: fa2402d80d90f4dbfb20f35501a371b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: fa2402d80d90f4dbfb20f35501a371b1,
         type: 3}
@@ -8479,7 +8479,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: 00db7098a9dc449adbf4e8a1b4a8092b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: 00db7098a9dc449adbf4e8a1b4a8092b,
         type: 3}
@@ -11592,7 +11592,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: 00db7098a9dc449adbf4e8a1b4a8092b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: 00db7098a9dc449adbf4e8a1b4a8092b,
         type: 3}
@@ -13477,7 +13477,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: a4612bc65d2ac4c5b80bbbaceabc530e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: a4612bc65d2ac4c5b80bbbaceabc530e,
         type: 3}
@@ -14703,7 +14703,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: c2f7b8763b45c421289e5b63419ceea7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: c2f7b8763b45c421289e5b63419ceea7,
         type: 3}
@@ -17828,7 +17828,7 @@ PrefabInstance:
     - target: {fileID: 6342319326498211900, guid: fc8966e2d4aef43dda6ea9814ed0d221,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6342319326498211901, guid: fc8966e2d4aef43dda6ea9814ed0d221,
         type: 3}

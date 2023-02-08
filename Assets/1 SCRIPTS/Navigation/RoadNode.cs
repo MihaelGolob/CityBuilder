@@ -62,7 +62,7 @@ public class RoadNode {
         if (before == Orientation.Down && after == Orientation.None)
             return new Vector3(position.x - margin, 0, position.y);
        
-        throw new Exception($"No drive through point found for: {before} -> {after}");
+        return new Vector3(position.x, 0, position.y);
     } 
 
     public override bool Equals(object obj) {

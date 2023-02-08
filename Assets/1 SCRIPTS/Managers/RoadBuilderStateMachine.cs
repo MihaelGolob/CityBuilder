@@ -9,7 +9,6 @@ public class RoadBuilderStateMachine : MonoBehaviour {
     [SerializeField] private SelectSystem selectSystem;
     [Header("Vehicle settings")]
     [SerializeField] private List<GameObject> vehiclePrefabs;
-    [SerializeField] private List<Transform> vehicleTargets;
     
     // private variables
     private BuildingState _currentState;
@@ -34,7 +33,7 @@ public class RoadBuilderStateMachine : MonoBehaviour {
                 selectSystem.PlaceTrafficLights();
                 break;
             case BuildingState.PlaceVehicle:
-                _vehiclePlacement ??= new VehiclePlacement(selectSystem, SetState, vehiclePrefabs, vehicleTargets);
+                _vehiclePlacement ??= new VehiclePlacement(selectSystem, SetState, vehiclePrefabs);
                 _vehiclePlacement.PlaceVehicle();
                 break;
         }

@@ -41,7 +41,7 @@ public class NavigationSystem : MonoBehaviour {
         var path = _graph.FindPath(startNode, endNode, startingOrientation);
         
         // if there is no path, return an empty list
-        if (path.Count <= 1) return new List<Vector3>();
+        // if (path.Count <= 1) return new List<Vector3>();
         
         // convert to a list of vector3
         var result = new List<Vector3>();

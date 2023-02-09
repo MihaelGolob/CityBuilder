@@ -27,7 +27,8 @@ public class SelectSystem : MonoBehaviour {
     private Vector3 _firstTilePosition;
     private Orientation _lockBuildingDirection = Orientation.None;
 
-    private LayerMask _raycastMask;
+    private LayerMask _roadRaycastMask;
+    private LayerMask _vehicleRaycastMask;
 
     #region Unity Methods
 
@@ -35,7 +36,8 @@ public class SelectSystem : MonoBehaviour {
         _grid = GetComponent<Grid>();
         _mainCamera = Camera.main;
 
-        _raycastMask = LayerMask.GetMask("Ground");
+        _roadRaycastMask = LayerMask.GetMask("Ground");
+        _vehicleRaycastMask = LayerMask.GetMask("Vehicle");
     }
 
     #endregion
@@ -96,8 +98,13 @@ public class SelectSystem : MonoBehaviour {
         roadRenderer.HighlightRoadToDestroy(gridPos);
 
         if (Input.GetMouseButtonDown(0) && !LockSelection) {
+            var vehicle = GetObjectUnderMouse();
+            if (vehicle != null) {
+                Destroy(vehicle);
+                return;
+            }
+            
             if (!roadRenderer.RoadExists(gridPos)) return;
-
             // destroy tile
             roadRenderer.RemoveRoad(gridPos);
         }
@@ -167,7 +174,7 @@ public class SelectSystem : MonoBehaviour {
         var mouseWorldPosition = _mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
 
         var ray = _mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out var hit, _mainCamera.farClipPlane, _raycastMask)) {
+        if (Physics.Raycast(ray, out var hit, _mainCamera.farClipPlane, _roadRaycastMask)) {
             mouseWorldPosition = hit.point;
         }
 
@@ -175,6 +182,16 @@ public class SelectSystem : MonoBehaviour {
         var cellCenter = _grid.GetCellCenterWorld(cellPosition);
 
         return cellCenter;
+    }
+    
+    private GameObject GetObjectUnderMouse() {
+        var mousePosition = Input.mousePosition;
+        var ray = _mainCamera.ScreenPointToRay(mousePosition);
+        if (Physics.Raycast(ray, out var hit, _mainCamera.farClipPlane, _vehicleRaycastMask)) {
+            return hit.collider.gameObject;
+        }
+
+        return null;
     }
 
     #endregion

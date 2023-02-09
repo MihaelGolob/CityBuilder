@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9348,17 +9348,8 @@ MonoBehaviour:
   - {fileID: 6342319326498211900, guid: fc8966e2d4aef43dda6ea9814ed0d221, type: 3}
   - {fileID: 6342319326498211900, guid: 2b4a321d6dc7c4bf388316ba39bbef7d, type: 3}
   - {fileID: 6342319326498211900, guid: fa2402d80d90f4dbfb20f35501a371b1, type: 3}
-  vehicleTargets:
-  - {fileID: 1285931109}
-  - {fileID: 318798456}
-  - {fileID: 580094537}
-  - {fileID: 1855131152}
-  - {fileID: 836846702}
-  - {fileID: 1186952209}
-  - {fileID: 1923774027}
-  - {fileID: 1583066305}
-  - {fileID: 610733769}
-  - {fileID: 1785529203}
+  targetPrefab: {fileID: 3976021673060261910, guid: 56e61487a7e014f0db65ea0485da4fbd,
+    type: 3}
 --- !u!1 &906625083
 GameObject:
   m_ObjectHideFlags: 0

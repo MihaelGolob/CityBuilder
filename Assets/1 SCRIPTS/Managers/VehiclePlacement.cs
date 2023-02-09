@@ -15,16 +15,20 @@ public class VehiclePlacement {
 
     private SelectSystem _selectSystem;
     private Action<BuildingState> _changeState;
+    private Action<Vector3> _instantiateTarget;
+    private Action _removeTargets;
 
     private Vector3 _startPosition;
     private Vector3 _endPosition;
     private int _positionsAssigned;
 
-    public VehiclePlacement(SelectSystem selectSystem, Action<BuildingState> changeState, List<GameObject> vehicles) {
+    public VehiclePlacement(SelectSystem selectSystem, Action<BuildingState> changeState, List<GameObject> vehicles, Action<Vector3> instantiateTarget, Action removeTargets) {
         if (vehicles.Count == 0) throw new Exception("Not enough targets!");
         
         _selectSystem = selectSystem;
         _changeState = changeState;
+        _instantiateTarget = instantiateTarget;
+        _removeTargets = removeTargets;
         
         var prefab = vehicles[Random.Range(0, vehicles.Count)];
         _selectedVehicle = Object.Instantiate(prefab);
@@ -77,10 +81,12 @@ public class VehiclePlacement {
         if (_positionsAssigned == 0 && Input.GetMouseButtonDown(0) && !_selectSystem.LockSelection) {
             _startPosition = pos;
             _positionsAssigned++;
+            _instantiateTarget(pos);
         }
         else if (_positionsAssigned == 1 && Input.GetMouseButtonDown(0) && !_selectSystem.LockSelection) {
             _endPosition = pos;
             _positionsAssigned++;
+            _instantiateTarget(pos);
             StartVehicle();
         }
     }
@@ -91,6 +97,7 @@ public class VehiclePlacement {
         _selectedVehicle.GetComponent<NavMeshAgent>().enabled = true;
         _vehicleScript.enabled = true;
         _vehicleScript.StartVehicle();
+        _removeTargets();
         
         _changeState(BuildingState.None);
     }

@@ -105,6 +105,7 @@ public class RoadRenderer : MonoBehaviour {
     }
 
     private Dictionary<(int, int), RoadTile> ImportData() {
+        #if UNITY_EDITOR
         // import road map from json file
         var json = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/MeshData/GeneratedRoadMap.json");
         if (json == null) {
@@ -113,6 +114,7 @@ public class RoadRenderer : MonoBehaviour {
         else {
             return JsonConverter.JsonToRoadMap(json.text);
         }
+        #endif
 
         return null;
     }
@@ -211,10 +213,12 @@ public class RoadRenderer : MonoBehaviour {
         System.IO.File.Delete(path);
         // write to new file
         System.IO.File.WriteAllText(path, json);
+        #if UNITY_EDITOR
         // also save mesh as asset
         var mesh = _meshFilter.mesh;
         AssetDatabase.CreateAsset(mesh, "Assets/MeshData/GeneratedRoadMesh.asset");
         AssetDatabase.SaveAssets();
+        #endif
     }
 
     #endregion

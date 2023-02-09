@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class RoadMap {
     private readonly Dictionary<(int, int), RoadTile> _roadMap;
@@ -70,7 +71,12 @@ public class RoadMap {
             // remove road
             RemoveFromMap(mapCoord);
         }
-        
+
+        if (tile.HasTrafficLights) {
+            // destroy traffic lights
+            Object.Destroy(tile.TrafficLight);
+        }
+
         // remove highlighted road
         _highlightedTile = (null, null);
 
@@ -80,7 +86,7 @@ public class RoadMap {
             _roadMap.TryGetValue((n.x, n.y), out var t);
 
             var nt = GetRoadType(n.x, n.y);
-            _roadMap[(n.x, n.y)] = new RoadTile(nt.type, nt.orientation, (t.Position.x, t.Position.y), RoadColor, PavementColor);
+            _roadMap[(n.x, n.y)] = new RoadTile(nt.type, nt.orientation, (t.Position.x, t.Position.y), RoadColor, PavementColor, hasTrafficLights: t.HasTrafficLights, trafficLight: t.TrafficLight);
         }
     }
 
@@ -98,13 +104,13 @@ public class RoadMap {
         // change previously highlighted tile to normal
         if (_highlightedTile.x != null && _highlightedTile.y != null) {
             var tile = _roadMap[((int, int))_highlightedTile];
-            _roadMap[((int, int))_highlightedTile] = new RoadTile(tile.Type, tile.Orientation, tile.Position, RoadColor, PavementColor);
+            _roadMap[((int, int))_highlightedTile] = new RoadTile(tile, RoadColor, PavementColor);
         }
 
         // change new highlighted tile to highlighted
         if (_roadMap.ContainsKey(mapCoord)) {
             var tile = _roadMap[mapCoord];
-            _roadMap[mapCoord] = new RoadTile(tile.Type, tile.Orientation, tile.Position, roadColor, pavementColor);
+            _roadMap[mapCoord] = new RoadTile(tile, roadColor, pavementColor);
             _highlightedTile = mapCoord;
         }
         else {
@@ -134,6 +140,15 @@ public class RoadMap {
         var mapCoord = ToMapCoordinates(x, y);
         _roadMap.TryGetValue(mapCoord, out var tile);
         return tile?.HasTrafficLights ?? true;
+    }
+    
+    public void PlaceTrafficLight(float x, float y, GameObject gameObject) {
+        var mapCoord = ToMapCoordinates(x, y);
+        _roadMap.TryGetValue(mapCoord, out var tile);
+        if (tile == null) return;
+        
+        tile.HasTrafficLights = true;
+        tile.TrafficLight = gameObject;
     }
     
     public Orientation GetTileOrientation(float x, float z) {

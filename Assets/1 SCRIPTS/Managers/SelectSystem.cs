@@ -98,12 +98,12 @@ public class SelectSystem : MonoBehaviour {
         roadRenderer.HighlightRoadToDestroy(gridPos);
 
         if (Input.GetMouseButtonDown(0) && !LockSelection) {
-            var vehicle = GetObjectUnderMouse();
-            if (vehicle != null) {
-                Destroy(vehicle);
+            var objectToDestroy = GetObjectUnderMouse();
+            if (objectToDestroy != null) {
+                Destroy(objectToDestroy);
                 return;
             }
-            
+
             if (!roadRenderer.RoadExists(gridPos)) return;
             // destroy tile
             roadRenderer.RemoveRoad(gridPos);
@@ -128,7 +128,8 @@ public class SelectSystem : MonoBehaviour {
             var position = new Vector3(gridPos.x, 0f, gridPos.z);
             var prefab = intersectionCount == 3 ? intersection3Prefab : intersection4Prefab;
             var rotation = CalculateRotation(intersectionCount, orientation);
-            Instantiate(prefab, position, rotation, transform);
+            var light = Instantiate(prefab, position, rotation, transform);
+            roadRenderer.PlaceTrafficLigth(gridPos, light);
         }
     }
 

@@ -9,6 +9,7 @@ public class RoadTile {
     public (float x, float y) Position { get; private set; }
     public bool Preview { get; set; }
     public bool HasTrafficLights { get; set; }
+    public GameObject TrafficLight { get; set; }
 
     private Color _roadColor;
     private Color _pavementColor;
@@ -33,15 +34,30 @@ public class RoadTile {
 
     private RoadNode _navigationNode;
 
-    public RoadTile(RoadType type, Orientation orientation, (float x, float y) position, Color roadColor, Color pavementColor, bool isPreview = false) {
+    public RoadTile(RoadType type, Orientation orientation, (float x, float y) position, Color roadColor, Color pavementColor, bool isPreview = false, bool hasTrafficLights = false, GameObject trafficLight = null) {
         Type = type;
         Position = position;
         _roadColor = roadColor;
         _pavementColor = pavementColor;
         Preview = isPreview;
+        HasTrafficLights = hasTrafficLights;
+        TrafficLight = trafficLight;
 
         RoadGenerator.GenerateRoad(type, new Vector3(position.x, 0.0f, position.y), _roadColor, _pavementColor, out _vertices, out _triangles, out _colors);
         Rotate(orientation);
+    }
+
+    public RoadTile(RoadTile tile, Color roadColor, Color pavementColor, bool isPreview = false) {
+        Type = tile.Type;
+        Position = tile.Position;
+        _roadColor = roadColor;
+        _pavementColor = pavementColor;
+        Preview = isPreview;
+        HasTrafficLights = tile.HasTrafficLights;
+        TrafficLight = tile.TrafficLight;
+        
+        RoadGenerator.GenerateRoad(Type, new Vector3(Position.x, 0.0f, Position.y), _roadColor, _pavementColor, out _vertices, out _triangles, out _colors);
+        Rotate(tile.Orientation);
     }
     
     public void Rotate(Orientation orientation) {

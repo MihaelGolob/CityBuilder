@@ -196,6 +196,10 @@ public class RoadRenderer : MonoBehaviour {
     public int CountNeighbours(Vector3 pos) => _roadMap.CountNeighbors(pos.x, pos.z);
     
     public bool TrafficLightExists(Vector3 pos) => _roadMap.TrafficLightExists(pos.x, pos.z);
+    
+    public void PlaceTrafficLigth(Vector3 gridPos, GameObject o) {
+        _roadMap.PlaceTrafficLight(gridPos.x, gridPos.z, o);
+    }
         
     public Orientation GetOrientation(Vector3 pos) => _roadMap.GetTileOrientation(pos.x, pos.z);
 

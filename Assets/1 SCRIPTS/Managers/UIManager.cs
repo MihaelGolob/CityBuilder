@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
 
     [Header("UI elements")] 
     [SerializeField] private GameObject buildWindow;
+    [SerializeField] private GameObject exitWindow;
     [SerializeField] private ButtonManager handButton;
     [SerializeField] private ButtonManager buildWindowButton;
     [SerializeField] private ButtonManager destroyButton;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour {
 
     private void Start() {
         OnNoneButtonPressed();
+        exitWindow.SetActive(false);
     }
 
     private void Update() {
@@ -70,6 +72,14 @@ public class UIManager : MonoBehaviour {
     
     public void OnPlaceTrafficLightsButtonPressed() {
         stateMachine.SetState(BuildingState.PlaceTrafficLights);
+    }
+
+    public void OnExitButtonPressed() {
+        exitWindow.SetActive(true);
+    }
+    
+    public void OnExitApplicationButtonPressed() {
+        Application.Quit();
     }
     
     #endregion

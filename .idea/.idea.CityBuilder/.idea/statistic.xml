@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Statistic">
+    <option name="fileTypes" value="" />
+    <option name="fileTypesIncluded" value="cs" />
+    <option name="separateTabsFileTypes" value="" />
+    <option name="excludedDirectories">
+      <list>
+        <option value="$PROJECT_DIR$/.idea" />
+        <option value="$PROJECT_DIR$/Library" />
+        <option value="$PROJECT_DIR$/Logs" />
+        <option value="$PROJECT_DIR$/obj" />
+        <option value="$PROJECT_DIR$/Packages" />
+        <option value="$PROJECT_DIR$/ProjectSettings" />
+        <option value="$PROJECT_DIR$/Temp" />
+        <option value="$PROJECT_DIR$/UserSettings" />
+        <option value="$PROJECT_DIR$/Assets/0 SCENES" />
+        <option value="$PROJECT_DIR$/Assets/3 MATERIALS" />
+        <option value="$PROJECT_DIR$/Assets/4 PREFABS" />
+        <option value="$PROJECT_DIR$/Assets/5 SHADERS" />
+        <option value="$PROJECT_DIR$/Assets/6 PARTICLES" />
+        <option value="$PROJECT_DIR$/Assets/7 SOUNDS" />
+        <option value="$PROJECT_DIR$/Assets/8 ICONS" />
+        <option value="$PROJECT_DIR$/Assets/MeshData" />
+        <option value="$PROJECT_DIR$/Assets/Modern UI Pack" />
+        <option value="$PROJECT_DIR$/Assets/Settings" />
+        <option value="$PROJECT_DIR$/Assets/Tarbo-CITY-TrafficLights" />
+        <option value="$PROJECT_DIR$/Assets/TextMesh Pro" />
+        <option value="$PROJECT_DIR$/Assets/Vehicle pack" />
+      </list>
+    </option>
+  </component>
+</project>

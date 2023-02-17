@@ -21,7 +21,8 @@ public class Vehicle : MonoBehaviour {
 
     private IEnumerator Start() {
         _navAgent = GetComponent<NavMeshAgent>();
-
+        
+        // UIManager.Instance.AddNotification("Vehicle Created!");
         if (!autoStart) yield break;
         // wait for the navigation system to setup
         yield return new WaitForSeconds(2f);

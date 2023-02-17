@@ -1,12 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Michsky.MUIP;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
+    // singleton pattern
+    private static UIManager _instance;
+    public static UIManager Instance => _instance;
+    
     [Header("Script references")]
     [SerializeField] private RoadBuilderStateMachine stateMachine;
     [SerializeField] private RoadRenderer roadRenderer;
@@ -14,16 +15,28 @@ public class UIManager : MonoBehaviour {
     [Header("UI elements")] 
     [SerializeField] private GameObject buildWindow;
     [SerializeField] private GameObject exitWindow;
+    [SerializeField] private GameObject notificationWindow;
+    [SerializeField] private TMP_Text notificationText;
     [SerializeField] private ButtonManager handButton;
     [SerializeField] private ButtonManager buildWindowButton;
     [SerializeField] private ButtonManager destroyButton;
     [SerializeField] private ButtonManager buildRoadButton;
     [SerializeField] private ButtonManager trafficLightButton;
-    [SerializeField] private SliderManager zoomSlider;
+    
+    // private 
+    private NotificationSystem _notificationSystem;
+
+    private void Awake() {
+        if (_instance != null && _instance != this)
+            Destroy(this);
+        else
+            _instance = this;
+    }
 
     private void Start() {
         OnNoneButtonPressed();
         exitWindow.SetActive(false);
+        _notificationSystem = new NotificationSystem(ShowNotification, HideNotification, 3f);
     }
 
     private void Update() {
@@ -33,6 +46,23 @@ public class UIManager : MonoBehaviour {
         destroyButton.Interactable(stateMachine.CurrentState != BuildingState.Destroy);
         trafficLightButton.Interactable(stateMachine.CurrentState != BuildingState.PlaceTrafficLights);
     }
+    
+    #region Notification System
+    
+    public void AddNotification(string message) {
+        _notificationSystem.AddNotification(message);
+    }
+
+    private void ShowNotification(string message) {
+        notificationText.text = message;
+        notificationWindow.SetActive(true);
+    }
+    
+    private void HideNotification() {
+        notificationWindow.SetActive(false);
+    }
+    
+    #endregion
     
     #region Button Events
 

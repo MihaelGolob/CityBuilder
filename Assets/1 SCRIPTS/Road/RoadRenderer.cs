@@ -51,6 +51,9 @@ public class RoadRenderer : MonoBehaviour {
             RoadPreviewColor = roadPreviewColor,
             PavementPreviewColor = pavementPreviewColor
         };
+        
+        // bake nav mesh
+        NavigationSystem.Instance.BakeNavMesh();
     }
 
     #endregion

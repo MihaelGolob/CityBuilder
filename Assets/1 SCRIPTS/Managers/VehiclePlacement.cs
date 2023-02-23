@@ -21,7 +21,7 @@ public class VehiclePlacement {
     private Vector3 _startPosition;
     private Vector3 _endPosition;
     private int _positionsAssigned;
-    private int _notificationCount;
+    private int _notificationId = -1;
 
     public VehiclePlacement(SelectSystem selectSystem, Action<BuildingState> changeState, List<GameObject> vehicles, Action<Vector3> instantiateTarget, Action removeTargets) {
         if (vehicles.Count == 0) throw new Exception("Not enough targets!");
@@ -80,26 +80,27 @@ public class VehiclePlacement {
     private void SelectDrivingPoints() {
         var pos = MouseRaycast();
 
-        if (_positionsAssigned == 0 && _notificationCount == 0) {
-            UIManager.Instance.AddNotification("Click on a starting point!");
-            _notificationCount++;
-        }
-        else if (_positionsAssigned == 1 && _notificationCount == 1) {
-            UIManager.Instance.AddNotification("Click on a destination point!");
-            _notificationCount++;
+        if (_positionsAssigned == 0 &&  _notificationId < 0) {
+            _notificationId = UIManager.Instance.AddNotification("Click on a starting point!");
         }
         
         if (_positionsAssigned == 0 && Input.GetMouseButtonDown(0) && !_selectSystem.LockSelection) {
             _startPosition = pos;
             _positionsAssigned++;
             _instantiateTarget(pos);
+            
+            // add the second notification
+            UIManager.Instance.RemoveNotification(_notificationId);
+            _notificationId = UIManager.Instance.AddNotification("Click on a destination point!");
         }
         else if (_positionsAssigned == 1 && Input.GetMouseButtonDown(0) && !_selectSystem.LockSelection) {
-            UIManager.Instance.AddNotification("Click on a destination point!");
             _endPosition = pos;
             _positionsAssigned++;
             _instantiateTarget(pos);
             StartVehicle();
+            
+            // remove the second notification
+            UIManager.Instance.RemoveNotification(_notificationId);
         }
     }
 

@@ -49,8 +49,12 @@ public class UIManager : MonoBehaviour {
     
     #region Notification System
     
-    public void AddNotification(string message) {
-        _notificationSystem.AddNotification(message);
+    public int AddNotification(string message) {
+        return _notificationSystem.AddNotification(message);
+    }
+    
+    public void RemoveNotification(int id) {
+        _notificationSystem.RemoveNotification(id);
     }
 
     private void ShowNotification(string message) {

@@ -43,7 +43,9 @@ public class RoadMap {
         var rc = isPreviewRoad ? RoadPreviewColor : RoadColor;
         var pc = isPreviewRoad ? PavementPreviewColor : PavementColor;
 
-        var tile = new RoadTile(type.type, type.orientation, realPos, rc, pc, isPreviewRoad);
+        var tile = new RoadTile(type.type, type.orientation, realPos, rc, pc) {
+            Status = isPreviewRoad ? RoadStatus.Preview : RoadStatus.Normal
+        };
 
         // add road to map
         AddToMap(mapCoord, tile, isPreviewRoad);
@@ -54,20 +56,20 @@ public class RoadMap {
             _roadMap.TryGetValue((n.x, n.y), out var t);
 
             var nt = GetRoadType(n.x, n.y);
-            var rcolor = t.Preview ? RoadPreviewColor : RoadColor;
-            var pcolor = t.Preview ? PavementPreviewColor : PavementColor;
+            var rcolor = t.Status == RoadStatus.Preview ? RoadPreviewColor : RoadColor;
+            var pcolor = t.Status == RoadStatus.Preview ? PavementPreviewColor : PavementColor;
             
             _roadMap[(n.x, n.y)] = new RoadTile(nt.type, nt.orientation, (t.Position.x, t.Position.y), rcolor, pcolor);
         }
     }
 
-    public void RemoveRoad(float x, float y, bool isPreviewRoad = false) {
+    public void RemoveRoad(float x, float y, RoadStatus status = RoadStatus.Normal) {
         var mapCoord = ToMapCoordinates(x, y);
         _roadMap.TryGetValue(mapCoord, out var tile);
 
         if (tile == null) return;
 
-        if (tile.Preview == isPreviewRoad) {
+        if (tile.Status == status) {
             // remove road
             RemoveFromMap(mapCoord);
         }
@@ -122,11 +124,25 @@ public class RoadMap {
         return _roadMap.Values.ToList();
     }
 
+    public void CleanUp() {
+        // remove preview roads and change highlighted tile to normal
+        var previewRoads = _roadMap.Where(x => x.Value.Status == RoadStatus.Preview).ToList();
+        foreach (var road in previewRoads) {
+            RemoveFromMap(road.Key);
+        }
+        
+        if (_highlightedTile.x != null && _highlightedTile.y != null) {
+            var tile = _roadMap[((int, int))_highlightedTile];
+            _roadMap[((int, int))_highlightedTile] = new RoadTile(tile, RoadColor, PavementColor);
+        }
+        _highlightedTile = (null, null);
+    }
+
     public bool RoadExists(float x, float y) {
         var mapCoord = ToMapCoordinates(x, y);
         _roadMap.TryGetValue(mapCoord, out var tile);
         
-        return tile?.Preview == false;
+        return tile?.Status == RoadStatus.Normal;
     }
     
     public int CountNeighbors(float x, float y) {

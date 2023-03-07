@@ -150,7 +150,7 @@ public class RoadRenderer : MonoBehaviour {
         // remove old preview
         if (removeOld) {
             foreach (var previewPos in _previewPositions) {
-                _roadMap.RemoveRoad(previewPos.x, previewPos.z, true);
+                _roadMap.RemoveRoad(previewPos.x, previewPos.z, RoadStatus.Preview);
             }
             _previewPositions.Clear();
         }
@@ -179,10 +179,15 @@ public class RoadRenderer : MonoBehaviour {
 
     public void RemovePreviewRoad() {
         foreach (var previewPos in _previewPositions) {
-            _roadMap.RemoveRoad(previewPos.x, previewPos.z, true);
+            _roadMap.RemoveRoad(previewPos.x, previewPos.z, RoadStatus.Preview);
         }
         _previewPositions.Clear();
 
+        UpdateMesh();
+    }
+
+    public void CleanUp() {
+        _roadMap.CleanUp();
         UpdateMesh();
     }
 

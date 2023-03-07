@@ -149,6 +149,7 @@ public class SelectSystem : MonoBehaviour {
 
     public void ChangeStateTransitions() {
         roadRenderer.RemovePreviewRoad();
+        roadRenderer.CleanUp();
     }
     
     public static Vector3 ToCellPosition(Vector3 worldPosition) {

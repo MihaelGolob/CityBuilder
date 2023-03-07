@@ -8,7 +8,7 @@ public class JsonConverter {
         var dict = new Dictionary<(int, int), RoadTileJson>();
         
         foreach (var key in roadMap.Keys) {
-            if (roadMap[key].Preview) continue;
+            if (roadMap[key].Status == RoadStatus.Preview) continue;
             
             var rc = roadMap[key].RoadColor;
             var pc = roadMap[key].PavementColor;

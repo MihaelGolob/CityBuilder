@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6971,7 +6971,7 @@ MonoBehaviour:
   pavementWidth: 1.3
   pavementHeight: 0.5
   roadColor: {r: 0.04, g: 0.04, b: 0.04, a: 1}
-  pavementColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  pavementColor: {r: 0.27, g: 0.27, b: 0.27, a: 1}
   roadPreviewColor: {r: 0.135, g: 0.1319355, b: 0.07371, a: 1}
   pavementPreviewColor: {r: 0.3, g: 0.3, b: 0.16756757, a: 1}
   roadDestroyColor: {r: 0.15, g: 0.059016407, b: 0.059016407, a: 1}
